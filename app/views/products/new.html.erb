@@ -1,0 +1,31 @@
+<h1>Add Product</h1>
+<%= form_with scope: :product, url: products_path, local: true do |form| %>
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :Description %><br>
+    <%= form.text_field :description %>
+  </p>
+
+  <p>
+    <%= form.label :Product_number %><br>
+    <%= form.text_field :product_number %>
+  </p>
+
+  <p>
+    <%= form.label :Price %><br>
+    <%= form.text_field :price %>
+  </p>
+ 
+  <p>
+    <%= form.label :Quantity %><br>
+    <%= form.text_field :quantity %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
