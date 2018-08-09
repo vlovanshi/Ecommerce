@@ -1,0 +1,34 @@
+<%= form_with model: @product, local: true do |form| %>
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :Description %><br>
+    <%= form.text_field :description %>
+  </p>
+
+  <p>
+    <%= form.label :Product_number %><br>
+    <%= form.text_field :product_number %>
+  </p>
+
+  <p>
+    <%= form.label :Price %><br>
+    <%= form.text_field :price %>
+  </p>
+ 
+  <p>
+    <%= form.label :Quantity %><br>
+    <%= form.text_field :quantity %>
+  </p>
+  <div class="field">
+    <%= form.label :image %><br />
+    <%= form.file_field :avatar, autocomplete: "avatar" %>
+  </div><br />
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

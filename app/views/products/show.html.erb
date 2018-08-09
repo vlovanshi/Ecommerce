@@ -3,6 +3,11 @@
   <%= @product.name %>
 </p>
 <p>
+  <% if @product.avatar.attached? %>
+    <%= image_tag(@product.avatar, heigth: '200' , width: '100') %>
+  <% end %>
+</p>
+<p>
   <strong>Description:</strong>
   <%= @product.description %>
 </p>
@@ -18,3 +23,8 @@
   <strong>Quantity:</strong>
   <%= @product.quantity %>
 </p>
+
+<td><%= link_to 'Add to Cart', product_path, class: "btn btn-success " %></td>
+
+
+

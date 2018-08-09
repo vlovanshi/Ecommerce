@@ -1,1 +1,43 @@
-<h1> Welcome to products index page </h1>
+<% if seller_signed_in? %>
+    <%= link_to 'New Product', new_product_path, class: "btn btn-primary" %></td>
+<% end %>
+   
+<h1 style="color:#0853CF;"> Product List </h1>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Product number</th>
+    <th>Price</th>
+    <th>Quantity</th> 
+    <th>Show Product</th>
+    <th>Edit Product</th>
+    <th>Remove Product</th>
+  </tr>
+  <% @products.each do |product| %>
+    <% if seller_signed_in? && product.seller == current_seller %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.product_number %></td>
+        <td><%= product.price %></td>
+        <td><%= product.quantity %></td>
+        <td><%= link_to 'Show', product_path(product), class: "btn btn-info " %></td>
+        <td><%= link_to 'Edit', edit_product_path(product), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', product_path(product),class: "btn btn-info", 
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+   <% if !seller_signed_in?  %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.product_number %></td>
+        <td><%= product.price %></td>
+        <td><%= product.quantity %></td>
+        <td><%= link_to 'show', product_path(product), class: "btn btn-info " %></td>
+      </tr>
+    <% end %>
+  <% end %>  
+</table>
