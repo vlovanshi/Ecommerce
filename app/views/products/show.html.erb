@@ -1,12 +1,9 @@
 <p>
-  <strong>Name:</strong>
-  <%= @product.name %>
+  <h2><%= @product.name %></h2>
 </p>
-<p>
-  <% if @product.avatar.attached? %>
-    <%= image_tag(@product.avatar, heigth: '200' , width: '100') %>
+  <% @product.avatars.each do |avatar| %>    
+      <%= image_tag avatar.variant(resize: "200x200")  %>    
   <% end %>
-</p>
 <p>
   <strong>Description:</strong>
   <%= @product.description %>
@@ -23,7 +20,6 @@
   <strong>Quantity:</strong>
   <%= @product.quantity %>
 </p>
-
 <td><%= link_to 'Add to Cart', product_path, class: "btn btn-success " %></td>
 
 

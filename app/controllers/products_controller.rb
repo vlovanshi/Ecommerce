@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
  
   def create
     @product = current_seller.products.new(product_params)
+   
     if @product.save
       flash[:notice] = "Successfully Added product"
       redirect_to @product
@@ -33,15 +34,15 @@ class ProductsController < ApplicationController
       render 'edit'
     end
   end
+
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
-   
+    @product.destroy   
     redirect_to products_path
   end
   private
     def product_params
-      params.require(:product).permit(:name, :description, :product_number, :price, :quantity, :avatar)
+      params.require(:product).permit(:name, :description, :product_number, :price, :quantity, avatars:[])
       
     end
 end

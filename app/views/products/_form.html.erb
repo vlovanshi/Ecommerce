@@ -24,11 +24,10 @@
     <%= form.text_field :quantity %>
   </p>
   <div class="field">
-    <%= form.label :image %><br />
-    <%= form.file_field :avatar, autocomplete: "avatar" %>
+    <%= form.label :images %><br />
+    <%= form.file_field :avatars, multiple: true %>
   </div><br />
   <p>
     <%= form.submit %>
   </p>
- 
 <% end %>
