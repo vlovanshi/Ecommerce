@@ -1,0 +1,24 @@
+<h1 style="color:#0D8405;">My Cart</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Product_image</th>
+    <th>Price</th>
+    <th>Remove item</th>
+  </tr>
+<% @sum = 0 %> 
+  <% @cart_item.each do |i|%>
+    
+    <tr>
+      <td><%= i.product.name %></td>
+      <td><%= image_tag i.product.avatars.attachments.last.variant(resize: "100x100") %></td>
+      <td><%= i.product.price %></td>
+     <td><%= link_to "Remove", cart_path(i),  method: :delete %></td>
+    </tr>
+   
+      <% @sum +=  i.product.price %>
+   
+    
+  <% end %>
+Total : <%= @sum %>
+</table>

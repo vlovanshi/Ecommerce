@@ -1,7 +1,9 @@
 <% if seller_signed_in? %>
     <%= link_to 'New Product', new_product_path, class: "btn btn-primary" %></td>
 <% end %>
-   
+<% if user_signed_in?%>
+  <%= link_to 'My cart', carts_url, class: "btn btn-primary" %>
+<% end %>
 <h1 style="color:#0853CF;"> Product List </h1>
 <table class="table table-striped">
   <tr>
@@ -9,8 +11,7 @@
     <th>Product Image</th>
     <th>Price</th>
     <th>Show Product</th>
-    <th>Edit Product</th>
-    <th>Remove Product</th>
+    
   </tr>
   <% @products.each do |product| %>
     <% if seller_signed_in? && product.seller == current_seller %>
@@ -28,9 +29,10 @@
     <% if !seller_signed_in?  %>
       <tr>
         <td><%= product.name %></td> 
-        <td><%= image_tag product.avatars.attachments.first.variant(resize: "150x150") %></td>
+        <td><%= image_tag product.avatars.attachments.last.variant(resize: "150x150") %></td>
         <td><%= product.price %></td> 
         <td><%= link_to 'show', product_path(product), class: "btn btn-info " %></td>
+        
       </tr>
     <% end %>
   <% end %>  
