@@ -1,0 +1,9 @@
+<%= form_with(model: [ @product, @review], local: true) do |form| %>
+  <p>   
+    <%= form.text_field :body, rows: 2, cols: 60,
+                         placeholder: "write a review..." %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

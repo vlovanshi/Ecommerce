@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Seller id</th>
+      <th>Seller name</th>
+      <th>Seller Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sellers.each do |seller| %>
+      <tr>
+        <td><%= seller.id %></td>
+        <td><%= seller.first_name %></td>
+      <% if seller.verified? %>
+        <td>&#10004;</td>        
+      <% else %>
+        <td> <%= link_to 'Verify seller', verify_path(id: seller.id) %></td>
+      <% end %>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

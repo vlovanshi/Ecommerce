@@ -1,23 +1,32 @@
 class ProductsController < ApplicationController
+  before_action :get_product, only: %i[ show edit update destroy verify]
   def index
     @products = Product.all
   end
 
+  def myproduct
+    @products = current_seller.products.all   
+  end
+
   def show
-    @product = Product.find(params[:id])
+    @review = @product.reviews.new
+    @reviews = @product.reviews
   end
 
+  
   def new
-    @product = current_seller.products.new
-  end
+   if current_seller.verified? 
+     @product = current_seller.products.build
+   else
+     flash[:notice] = "Your Account is not verified yet kindly wait for the admin veryfication"
+     redirect_to myproduct_path
+   end
+ end
 
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
  
   def create
-    @product = current_seller.products.new(product_params)
-   
+    @product = current_seller.products.new(product_params)   
     if @product.save
       flash[:notice] = "Successfully Added product"
       redirect_to @product
@@ -27,7 +36,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to @product
     else
@@ -36,13 +44,14 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy   
-    redirect_to products_path
+    redirect_to myproduct_path
   end
   private
     def product_params
-      params.require(:product).permit(:name, :description, :product_number, :price, :quantity, avatars:[])
-      
+      params.require(:product).permit(:name, :description, :product_number, :price, :quantity, avatars:[])     
+    end
+    def get_product
+      @product = Product.find(params[:id])
     end
 end

@@ -4,4 +4,7 @@ class Seller < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          has_many :products
+         has_one :address, as: :addressable
+         accepts_nested_attributes_for :address
+
 end

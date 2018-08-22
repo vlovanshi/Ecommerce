@@ -1,25 +1,41 @@
 <h1 style="color:#0D8405;">My Cart</h1>
-<table class="table table-striped">
-  <tr>
-    <th>Name</th>
-    <th>Product_image</th>
-    <th>Price</th>
-    <th>Remove item</th>
-  </tr>
-<% @sum = 0 %> 
-  <% @cart.each do |i|%>
-    <% i.cart_items.each do |j| %>
-    
+  <table class="table table-striped">
     <tr>
-      <td><%= j.product.name %></td>
-      <td><%= image_tag j.product.avatars.attachments.last.variant(resize: "100x100") %></td>
-      <td><%= j.product.price %></td>
-     <td><%= link_to "Remove", cart_path(j),  method: :delete %></td>
+      <th>Name</th>  
+      <th>Price</th>    
+      <th>Quantity</th>
+      <th>Update Quantity</th>
     </tr>
-   
-      <% @sum +=  j.product.price %>
-   
+    <% @sum = 0%> 
+    <% @cart.each do |cart|%>
+    <div class="well">
+      <div class="row">
+        <div class="col-sm-8">
+        <tr>
+          <td><%= cart.product.name %></td>
+          <td><%= a = (cart.product.price)*(cart.quantity) %></td>
+          <td><%= cart.quantity %></td>
+          </div> 
+          <td><div class="col-sm-4">
+            <div class="pull-right">
+              <%= form_for(cart, local: true) do |f| %>
+                <div class="form-group">
+                  <%= f.text_field :quantity, value: cart.quantity.to_i, min: 1, class: 'form-control' %>
+                </div>
+                <div class="btn-group">
+                  <%= f.submit "Update Quantity", class: 'btn btn-primary' %>
+                  <%= link_to "Delete", cart_path(cart), method: :delete, remote: true, class: 'btn btn-danger'  %>
+                </div>
+              <% end %>
+            </div> 
+          </div> </td> 
+        </tr>
+      </div>
+    </div>
+      <% @sum +=  a %>
     <% end %>
-  <% end %>
-Total : <%= @sum %>
-</table>
+  Payable Amount : <%= @sum %>
+  </table>
+
+
+ 

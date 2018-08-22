@@ -1,0 +1,23 @@
+<%= link_to 'New Product', new_product_path, class: "btn btn-primary" %></td>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Product Image</th>
+    <th>Price</th>
+    <th>Show Product</th>
+    <th>Edit Product</th>
+    <th>Destroy Product</th>   
+  </tr>
+    <% @products.each do |product| %>     
+      <tr>
+        <td><%= product.name %></td>       
+        <td><%= image_tag product.avatars.attachments.last.variant(resize: "150x150") %></td>
+        <td><%= product.price %></td>        
+        <td><%= link_to 'Show', product_path(product), class: "btn btn-info " %></td>
+        <td><%= link_to 'Edit', edit_product_path(product), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', product_path(product),class: "btn btn-info", 
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>   
+</table>

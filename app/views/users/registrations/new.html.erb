@@ -1,12 +1,43 @@
 <h2>Sign up</h2>
 
 <body>
-  <button type="button" class="btn btn-primary">Primary</button>
+  
 
 </body>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last name" %>
+  </div> 
+
+  <div class="field">
+    <%= f.fields_for :address, Address.new do |address_form|%>
+      <div class="field">
+        <%= address_form.label :country %><br />
+        <%= address_form.text_field :country, autofocus: true, autocomplete: "address_form.country" %> 
+      </div>
+      <div class="field">
+        <%= address_form.label :state %><br />
+        <%= address_form.text_field :state, autofocus: true, autocomplete: "address_form.state" %> 
+      </div>
+      <div class="field">
+        <%= address_form.label :city %><br />
+        <%= address_form.text_field :city, autofocus: true, autocomplete: "address_form.city" %> 
+      </div>
+      <div class="field">
+        <%= address_form.label :postal_code %><br />
+        <%= address_form.text_field :postal_code, autofocus: true, autocomplete: "address_form.postal_code" %> 
+      </div>
+    <% end %>
+ </div>
 
   <div class="field">
     <%= f.label :email %><br />
