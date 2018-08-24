@@ -25,10 +25,12 @@
       <strong>Quantity:</strong>
       <%= @product.quantity %>
     </p>
-    <h3>Product Reviews</h3>
-      <%=  render 'reviews/collection' %>
-    <h3>Leave a Review</h3>
-      <%= render 'reviews/form' %>
+    <div id = "comment">
+      <h3>Product Reviews</h3>
+        <%=  render 'reviews/collection' %>
+      <h3>Leave a Review</h3>
+        <%= render 'reviews/form' %>
+    </div>
   </div>
 </div>
 <p><%= link_to 'Back', products_path, class: "btn btn-dark " %></p>

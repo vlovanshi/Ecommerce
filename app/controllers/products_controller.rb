@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_seller!, except: [:index, :show]
+  skip_before_action :user_authenticate
   before_action :get_product, only: %i[ show edit update destroy verify]
   def index
     @products = Product.all
@@ -12,7 +14,6 @@ class ProductsController < ApplicationController
     @review = @product.reviews.new
     @reviews = @product.reviews
   end
-
   
   def new
    if current_seller.verified? 
@@ -54,4 +55,9 @@ class ProductsController < ApplicationController
     def get_product
       @product = Product.find(params[:id])
     end
+    
+   
+      
+    
+ 
 end

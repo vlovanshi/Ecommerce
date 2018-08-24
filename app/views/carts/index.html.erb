@@ -1,19 +1,21 @@
-<h1 style="color:#0D8405;">My Cart</h1>
+<h1 style="color:#020202;">My Cart</h1>
   <table class="table table-striped">
     <tr>
-      <th>Name</th>  
-      <th>Price</th>    
+      <th>Name</th> 
+      <th>Price</th> 
+      <th>Total Price</th>    
       <th>Quantity</th>
       <th>Update Quantity</th>
     </tr>
     <% @sum = 0%> 
-    <% @cart.each do |cart|%>
+    <% @carts.each do |cart|%>
     <div class="well">
       <div class="row">
         <div class="col-sm-8">
         <tr>
           <td><%= cart.product.name %></td>
-          <td><%= a = (cart.product.price)*(cart.quantity) %></td>
+          <td><%= cart.product.price%></td>
+          <td><%= cart.total_price %></td>
           <td><%= cart.quantity %></td>
           </div> 
           <td><div class="col-sm-4">
@@ -25,17 +27,29 @@
                 <div class="btn-group">
                   <%= f.submit "Update Quantity", class: 'btn btn-primary' %>
                   <%= link_to "Delete", cart_path(cart), method: :delete, remote: true, class: 'btn btn-danger'  %>
-                </div>
+                </div><br></br>
+                
               <% end %>
+
             </div> 
           </div> </td> 
         </tr>
+
+
       </div>
     </div>
-      <% @sum +=  a %>
-    <% end %>
-  Payable Amount : <%= @sum %>
+     
+      <% @sum = @sum + (cart.product.price*cart.quantity)%> 
+    <% end %>  
+    
   </table>
+<div class="col-sm-12">
+  <div align="right">
+    <b>Payable Amount : <%= @sum %></b><br>
+    <%= link_to "Continue Shopping", products_path, class: "btn btn-info btn-lg" %>
+    <%= link_to "place order", place_url(), class: "btn btn-warning btn-lg" %>
+  </div>
+</div>
 
 
  

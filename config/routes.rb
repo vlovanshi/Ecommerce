@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews
   end
+  get '/order' => 'orders#place', :as => 'place_order'
+  post '/order' => 'orders#place', :as => 'place'
   get 'myproduct' => 'products#myproduct', :as => 'myproduct'
   get '/verify/:id' => 'approvals#verify', :as => 'verify' 
   post '/add_to_cart/:product_id' => 'carts#add_to_cart', :as => 'add_to_cart'

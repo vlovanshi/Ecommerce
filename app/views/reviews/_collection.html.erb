@@ -2,9 +2,9 @@
   <% @reviews.each do |review| %>
     <p>
       <%= review.user_id %>
-      <p><%= review.body %> </p>    
+      <p><%= review.body %> </p>       
         <%= link_to 'Destroy review', [review.product, review],
-          method: :delete, class: "btn " %> 
+          method: :delete, remote: true, class: "btn " %> 
     </p>    
   <% end %>
 </p>
