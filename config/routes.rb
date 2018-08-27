@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'myproduct' => 'products#myproduct', :as => 'myproduct'
   get '/verify/:id' => 'approvals#verify', :as => 'verify' 
   post '/add_to_cart/:product_id' => 'carts#add_to_cart', :as => 'add_to_cart'
-  resources :carts   
+  resources :carts  
+  resources :charges 
   resources :approvals, only: [:index] 
 end
    

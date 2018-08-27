@@ -69,3 +69,5 @@ gem 'popper_js'
 gem 'tether-rails'
 
 gem 'cancancan'
+
+gem 'stripe'

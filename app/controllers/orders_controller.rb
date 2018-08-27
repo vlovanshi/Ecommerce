@@ -4,16 +4,16 @@ class OrdersController < ApplicationController
     @amount = 0
     @quantity = 0
     @order.carts.each do |cart|
-      @amount = @amount + cart.product.price
+
       @quantity = @quantity + cart.quantity
+            @amount = @amount + (cart.product.price* cart.quantity)
+
     end
-    @order.update(amount: @amount)
-    @order.update(quantity: @quantity)
-    if @order.update(status: true)
-      flash[:notice] = 'Your Order is Placed Successfully'
-      redirect_to products_url
-    else
-      redirect_to carts_url
-    end
+    # @order.update(amount: @amount)
+    # @order.update(quantity: @quantity)
+     @order.update(amount: @amount, quantity: @quantity)
+     
  end
 end
+
+     
