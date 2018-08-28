@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
   get '/order' => 'orders#place', :as => 'place_order'
+
+  post '/order/stri' => 'orders#stri', :as => 'stri'
   post '/order' => 'orders#place', :as => 'place'
   get 'myproduct' => 'products#myproduct', :as => 'myproduct'
   get '/verify/:id' => 'approvals#verify', :as => 'verify' 

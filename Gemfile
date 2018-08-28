@@ -71,3 +71,4 @@ gem 'tether-rails'
 gem 'cancancan'
 
 gem 'stripe'
+gem 'stripe_event'
