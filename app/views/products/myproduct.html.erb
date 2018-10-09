@@ -11,7 +11,8 @@
   <% @products.each do |product| %>     
     <tr>
       <td><%= product.name %></td>       
-      <td><%= image_tag product.avatars.attachments.last.variant(resize: "150x150") %></td>
+     
+      <td><%= image_tag product.avatars.last %></td>
       <td><%= product.price %></td>        
       <td><%= link_to 'Show', product_path(product), class: "btn btn-info " %></td>
       <td><%= link_to 'Edit', edit_product_path(product), class: "btn btn-info" %></td>
